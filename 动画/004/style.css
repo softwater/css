@@ -1,0 +1,64 @@
+
+.operation{
+    clear: both;
+    position: relative;
+    top:200px;
+}
+
+#perspective {
+    perspective: 500px;
+    perspective-origin: 50% 50%;
+}
+
+#box{
+    position: relative;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.page {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    font-size: 20px;
+    margin: 0 auto;
+    float: left;
+    position: absolute;
+    filter:alpha(opacity:30);
+    opacity:0.3;
+    -moz-opacity:0.3;
+    -khtml-opacity: 0.3
+}
+
+.page1 {
+    background-color: #00b0e0;
+}
+
+.page2 {
+    background-color: #4CAF50;
+    transform: rotateY(-90deg);
+    transform-origin: right;
+}
+
+.page3 {
+    background-color: #e9e11a;
+    transform: translateZ(-100px);
+}
+
+.page4 {
+    background-color: #800400;
+    transform-origin: left;
+    transform: rotateY(90deg);
+}
+
+.page5 {
+    background-color: #ff00de;
+    transform-origin: top;
+    transform: rotateX(-90deg);
+}
+
+.page6 {
+    background-color: #666666;
+    transform-origin: bottom;
+    transform: rotateX(90deg);
+}

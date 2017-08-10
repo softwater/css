@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css 3D 练习</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body onload="init()">
+
+<div id="perspective">
+    <!--<div id="box"></div>-->
+    <div id="box">
+        <div class="page page1">1</div>
+        <div class="page page2">2</div>
+        <div class="page page3">3</div>
+        <div class="page page4">4</div>
+        <div class="page page5">5</div>
+        <div class="page page6">6</div>
+    </div>
+</div>
+
+<div class="operation">
+    <h3>移动</h3>
+    X 轴：<input id="translateXRange" type="range" min="-1280" max="1280" value="0" oninput="trans()"/>
+    Y 轴：<input id="translateYRange" type="range" min="-1280" max="1280" value="0" oninput="trans()"/>
+    Z 轴：<input id="translateZRange" type="range" min="-1280" max="1280" value="0" oninput="trans()"/>
+    <br/>
+    <span id="translateDescribe">沿 z 轴滑动</span>
+
+    <h3>绕轴旋转</h3>
+    X 轴：<input id="rotateXRange" type="range" min="-360" max="360" value="0" oninput="trans()"/>
+    Y 轴：<input id="rotateYRange" type="range" min="-360" max="360" value="0" oninput="trans()"/>
+    Z 轴：<input id="rotateZRange" type="range" min="-360" max="360" value="0" oninput="trans()"/>
+    <br/>
+    <span id="rotateDescribe">沿 x 轴 旋转</span>
+
+    <h3>缩放</h3>
+    X 轴：<input id="scaleXRange" type="range" min="-10" max="10" value="1" oninput="trans()"/>
+    Y 轴：<input id="scaleYRange" type="range" min="-10" max="10" value="1" oninput="trans()"/>
+    Z 轴：<input id="scaleZRange" type="range" min="-10" max="10" value="1" oninput="trans()"/>
+    <br/>
+    <span id="scaleDescribe">沿 x 轴 缩放</span>
+
+    <h3>perspective设置</h3>
+    perspective：<input id="perspectiveRange" value="500" type="range" min="-1000" max="2000" oninput="onPerspective()">
+    perspective-origin X 轴方向：<input id="perspectiveXOriginRange" value="50%" type="range" min="0%" max="100%" oninput="onPerspective()">
+    perspective-origin y 轴方向：<input id="perspectiveYOriginRange" value="50%" type="range" min="0%" max="100%" oninput="onPerspective()">
+    <br/>
+    <span id="perspectiveDescribe"></span>
+
+    <script>
+        var box = document.getElementById("box");
+
+        var translateXRange = document.getElementById("translateXRange");
+        var translateYRange = document.getElementById("translateYRange");
+        var translateZRange = document.getElementById("translateZRange");
+        var translateDescribe = document.getElementById("translateDescribe");
+
+        var rotateXRange = document.getElementById("rotateXRange");
+        var rotateYRange = document.getElementById("rotateYRange");
+        var rotateZRange = document.getElementById("rotateZRange");
+        var rotateDescribe = document.getElementById("rotateDescribe");
+
+        var scaleXRange = document.getElementById("scaleXRange");
+        var scaleYRange = document.getElementById("scaleYRange");
+        var scaleZRange = document.getElementById("scaleZRange");
+        var scaleDescribe = document.getElementById("scaleDescribe");
+
+        var perspective = document.getElementById("perspective");
+        var perspectiveRange = document.getElementById("perspectiveRange");
+        var perspectiveXOriginRange = document.getElementById("perspectiveXOriginRange");
+        var perspectiveYOriginRange = document.getElementById("perspectiveYOriginRange");
+        var perspectiveDescribe = document.getElementById("perspectiveDescribe");
+
+        function init() {
+            trans();
+            onPerspective();
+        }
+
+        function trans() {
+            translateDescribe.innerHTML = "沿 x 轴滑动 " + translateXRange.value + "px&nbsp;&nbsp;"
+                + "沿 y 轴滑动 " + translateYRange.value + "px&nbsp;&nbsp;"
+                + "沿 z 轴滑动 " + translateZRange.value + "px";
+//            box.style.transform = "translateX("+translateXRange.value+"px) translateY("+translateYRange.value+"px) translateZ("+translateZRange.value+"px)";
+
+            rotateDescribe.innerHTML = "绕 x 轴旋转 " + rotateXRange.value + "°&nbsp;&nbsp;"
+                + "绕 y 轴旋转 " + rotateYRange.value + "°&nbsp;&nbsp;"
+                + "绕 z 轴旋转 " + rotateZRange.value + "°";
+
+            scaleDescribe.innerHTML = "沿 x 轴缩放 " +  scaleXRange.value + "°&nbsp;&nbsp;"
+                + "沿 y 轴缩放 " +  scaleYRange.value + "°&nbsp;&nbsp;"
+                + "沿 z 轴缩放 " + scaleZRange.value + "°";
+
+            box.style.transform =
+                "translate3d(" + translateXRange.value + "px," + translateYRange.value + "px," + translateZRange.value + "px) "
+                + "rotateX(" + rotateXRange.value + "deg) rotateY(" + rotateYRange.value + "deg) rotateZ(" + rotateZRange.value + "deg) "
+                + "scale3d("+scaleXRange.value+","+scaleYRange.value+","+scaleZRange.value+")";
+        }
+
+        function onPerspective() {
+            perspective.style.perspective = perspectiveRange.value + "px";
+            perspective.style.perspectiveOrigin = perspectiveXOriginRange.value + "% " + perspectiveYOriginRange.value + "%";
+            perspectiveDescribe.innerHTML = "perspective: " + perspectiveRange.value +
+                " perspectiveOrigin: ("+perspectiveXOriginRange.value+", "+perspectiveYOriginRange.value+")";
+        }
+    </script>
+</div>
+</body>
+</html>
